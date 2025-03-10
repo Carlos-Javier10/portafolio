@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: portafolio-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173" # Exponer el puerto de Vite
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - portafolio-network
+    restart: always
+
+networks:
+  portafolio-network:
+    external: true
