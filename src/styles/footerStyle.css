@@ -12,11 +12,3 @@ footer {
     z-index: 1000;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-    footer {
-        padding: 0.5rem;
-        margin-top: 1.25rem;
-        width: 100%;
-    }
-}
