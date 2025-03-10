@@ -1,14 +1,16 @@
+import React from "react";
+import '../styles/cardStyle.css'; // Importa el archivo CSS
+
 const Card = ({ title, description, image }) => {
-    return (
-      <div className="border rounded-lg shadow-md overflow-hidden">
-        {image && <img src={image} alt={title} className="w-full h-40 object-cover" />}
-        <div className="p-4">
-          <h2 className="text-lg font-bold">{title}</h2>
-          <p className="text-gray-600">{description}</p>
-        </div>
+  return (
+    <div className="card">
+      {image && <img src={image} alt={title} className="card-image" />}
+      <div className="card-content">
+        <h2 className="card-title">{title}</h2>
+        <p className="card-description">{description}</p>
       </div>
-    );
-  };
-  
-  export default Card;
-  
+    </div>
+  );
+};
+
+export default Card;

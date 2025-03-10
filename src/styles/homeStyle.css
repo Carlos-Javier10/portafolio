@@ -5,6 +5,16 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 4rem; /* Adjust this value based on the header height */
+    padding-bottom: 4rem; /* Adjust this value based on the footer height */
+    overflow: auto;
 }
 
 .text-center {
@@ -62,7 +72,7 @@ body {
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .p-10 {
         padding: 1.25rem;
     }

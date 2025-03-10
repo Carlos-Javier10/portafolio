@@ -2,12 +2,19 @@ header {
     background-color: #1a1a1a;
     color: #e0e0e0;
     padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 h1 {
@@ -27,6 +34,10 @@ a {
 
 a:hover {
     color: #757575;
+}
+
+body {
+    margin-top: 5rem; /* Adjust this value based on the header height */
 }
 
 /* Responsive styles */

@@ -1,0 +1,38 @@
+.card {
+  border: 1px solid #333;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  transition: transform 0.3s ease-in-out; /* Añade transición para la animación */
+  max-width: 300px; /* Ajusta el tamaño máximo del Card */
+  margin: 0 auto; /* Centra el Card */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Escala la tarjeta al pasar el mouse */
+}
+
+.card img {
+  width: 100%;
+  height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+  transition: transform 0.3s ease-in-out; /* Añade transición para la animación */
+}
+
+.card:hover img {
+  transform: scale(1.1); /* Escala la imagen al pasar el mouse */
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-description {
+  color: #757575;
+}
