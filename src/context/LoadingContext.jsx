@@ -1,7 +1,10 @@
+// LoadingContext.js
 import React, { createContext, useState } from 'react';
 
-export const LoadingContext = createContext();
+// Creamos el contexto
+export const LoadingContext = createContext(null);
 
+// Proveedor del contexto
 export const LoadingProvider = ({ children }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 

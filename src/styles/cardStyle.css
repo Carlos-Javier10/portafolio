@@ -6,8 +6,8 @@
   background-color: #1a1a1a;
   color: #e0e0e0;
   transition: transform 0.3s ease-in-out; /* Añade transición para la animación */
-  max-width: 300px; /* Ajusta el tamaño máximo del Card */
-  margin: 0 auto; /* Centra el Card */
+  max-width: 500px; /* Ajusta el tamaño máximo del Card */
+  margin: 1rem auto; /* Centra el Card y añade margen */
 }
 
 .card:hover {
@@ -25,14 +25,21 @@
 }
 
 .card-content {
-  padding: 1rem;
+  padding: 1.5rem; /* Aumenta el padding para un contenido más espacioso */
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem; /* Aumenta el tamaño de la fuente del título */
   font-weight: bold;
 }
 
 .card-description {
   color: #757575;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+  gap: 1rem; /* Espacio entre las tarjetas */
+  justify-items: center;
 }

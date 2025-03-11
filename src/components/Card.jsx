@@ -1,16 +1,32 @@
-import React from "react";
-import '../styles/cardStyle.css'; // Importa el archivo CSS
+import React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
+import '../styles/cardStyle.css';
 
-const Card = ({ title, description, image }) => {
+export default function ActionAreaCard({ title, description, image }) {
   return (
-    <div className="card">
-      {image && <img src={image} alt={title} className="card-image" />}
-      <div className="card-content">
-        <h2 className="card-title">{title}</h2>
-        <p className="card-description">{description}</p>
-      </div>
-    </div>
+    <Card sx={{ maxWidth: 345, margin: '1rem' }}>
+      <CardActionArea>
+        {image && (
+          <CardMedia
+            component="img"
+            height="240"
+            image={image}
+            alt={title}
+          />
+        )}
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
-};
-
-export default Card;
+}

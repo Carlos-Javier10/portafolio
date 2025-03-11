@@ -1,7 +1,8 @@
+// App.js
 import React from 'react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import AppRoutes from "./routes/AppRouter.jsx"; // Mantenemos el archivo de rutas
+import AppRoutes from "./routes/AppRouter.jsx"; // Rutas de la aplicación
 import { LoadingProvider } from './context/LoadingContext'; // Importa el proveedor de contexto
 
 const App = () => {
