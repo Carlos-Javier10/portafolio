@@ -5,6 +5,7 @@ import { LoadingContext } from '../context/LoadingContext'; // Importa el contex
 import ActionAreaCard from '../components/Card'; // Importa el componente Card de Material-UI
 import '../styles/homeStyle.css'; // Importa el archivo CSS
 import vsgImage from '../assets/images/vsg.png'; // Importa la imagen
+import '../styles/cardStyle.css'; // Importa el archivo CSS
 
 const Home = () => {
   // Accedemos al contexto de carga

@@ -1,19 +1,36 @@
-import Card from "../components/Card";
-
-const projects = [
-  { title: "Proyecto 1", description: "Descripción del proyecto 1", image: "/images/proyecto1.jpg" },
-  { title: "Proyecto 2", description: "Descripción del proyecto 2", image: "/images/proyecto2.jpg" },
-  { title: "Proyecto 3", description: "Descripción del proyecto 3", image: "/images/proyecto3.jpg" }
-];
+import React from 'react';
+import ActionAreaCard from '../components/Card'; // Importa el componente Card de Material-UI
+import '../styles/projectsStyle.css'; // Importa el archivo CSS
 
 const Projects = () => {
   return (
     <section className="p-10">
       <h1 className="text-3xl font-bold">Mis Proyectos 🚀</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {projects.map((project, index) => (
-          <Card key={index} title={project.title} description={project.description} image={project.image} />
-        ))}
+      <div className="mt-10 card-container">
+        <ActionAreaCard
+          title="Proyecto 1"
+          description="Descripción del proyecto 1"
+        />
+        <ActionAreaCard
+          title="Proyecto 2"
+          description="Descripción del proyecto 2"
+        />
+        <ActionAreaCard
+          title="Proyecto 3"
+          description="Descripción del proyecto 3"
+        />
+        <ActionAreaCard
+          title="Proyecto 4"
+          description="Descripción del proyecto 4"
+        />
+        <ActionAreaCard
+          title="Proyecto 5"
+          description="Descripción del proyecto 5"
+        />
+        <ActionAreaCard
+          title="Proyecto 6"
+          description="Descripción del proyecto 6"
+        />
       </div>
     </section>
   );

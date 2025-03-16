@@ -1,5 +1,7 @@
-import { useState } from "react";
-import Button from "../components/Button";
+import React, { useState } from "react";
+import { Button } from '@mui/base/Button';
+import { sendEmail } from '../services/emailService';
+import '../styles/contactStyle.css'; // Importa el archivo CSS
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -10,13 +12,22 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
+
+    sendEmail(formData)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Mensaje enviado con éxito!');
+      })
+      .catch((error) => {
+        console.log('FAILED...', error);
+        alert('Error al enviar el mensaje, por favor intenta nuevamente.');
+      });
   };
 
   return (
-    <section className="p-10">
+    <section className="p-10 text-center">
       <h1 className="text-3xl font-bold">Contáctame 📩</h1>
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4 contact-form">
         <input
           type="text"
           name="name"
@@ -41,7 +52,7 @@ const Contact = () => {
           onChange={handleChange}
           required
         ></textarea>
-        <Button text="Enviar Mensaje" type="submit" className="w-full" />
+        <Button type="submit">Enviar</Button>
       </form>
     </section>
   );

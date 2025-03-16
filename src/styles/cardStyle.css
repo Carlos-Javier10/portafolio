@@ -6,8 +6,8 @@
   background-color: #1a1a1a;
   color: #e0e0e0;
   transition: transform 0.3s ease-in-out; /* Añade transición para la animación */
-  max-width: 500px; /* Ajusta el tamaño máximo del Card */
-  margin: 1rem auto; /* Centra el Card y añade margen */
+  max-width: 300px; /* Ajusta el tamaño máximo del Card */
+  margin: 1rem; /* Añade margen */
 }
 
 .card:hover {
@@ -38,8 +38,14 @@
 }
 
 .card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem; /* Espacio entre las tarjetas */
-  justify-items: center;
+}
+
+@media (max-width: 1080px) {
+  .card {
+    max-width: 90%; /* Ajusta el tamaño máximo del Card para pantallas más pequeñas */
+  }
 }

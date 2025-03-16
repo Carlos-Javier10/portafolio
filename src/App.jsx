@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AppRoutes from "./routes/AppRouter.jsx"; // Rutas de la aplicación
 import { LoadingProvider } from './context/LoadingContext'; // Importa el proveedor de contexto
+import Projects from './pages/Projects.jsx';
 
 const App = () => {
   return (
