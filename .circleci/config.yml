@@ -1,0 +1,38 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.2
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.8
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run build
+
+  test:
+    docker:
+      - image: cimg/node:20.8
+    parallelism: 4
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+
+notifications:
+  email:
+    recipients:
+      - carlos.guagrilla@hotmail.com  # Pon aquí tu correo
+    on_success: change    # Solo notifica si cambia el estado (de fallo a éxito o viceversa)
+    on_failure: always    # Notifica siempre que falle
