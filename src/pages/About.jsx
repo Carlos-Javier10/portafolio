@@ -1,15 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import {
-  Avatar,
-  Box,
-  Container,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  Paper,
-  Typography,
-} from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { Avatar, Box, Container, Divider, Grid, List, ListItem, Paper, Typography } from "@mui/material";
 import { LoadingContext } from "../context/LoadingContext"; 
 import "../styles/aboutStyle.css"; 
 
@@ -17,14 +7,30 @@ const About = () => {
   // Accedemos al contexto de carga
   const { isLoaded, setIsLoaded } = useContext(LoadingContext);
 
+  // Estado para controlar el item seleccionado
+  const [selectedItem, setSelectedItem] = useState(null);
+
   // Usamos useEffect para marcar como cargado cuando el componente se monte
   useEffect(() => {
     setIsLoaded(true);
   }, [setIsLoaded]);
 
+  // Manejar clic en los ListItem
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  // Si aún no está cargado, mostramos un mensaje de carga
   if (!isLoaded) {
     return <div>Cargando...</div>;
   }
+
+  // Datos de los items de experiencia laboral
+  const experienceItems = [
+    { title: "Pasante de Desarrollo Web - Universidad de las Americas", description: "Descripción de la experiencia en la Universidad de las Americas." },
+    { title: "Pasante de IT - Tababela Cargo Center S.A.", description: "Descripción de la experiencia en Tababela Cargo Center S.A." },
+    { title: "Pasante de Desarrollo Web - Pronavalle", description: "Descripción de la experiencia en Pronavalle." },
+  ];
 
   return (
     <Box className="about-container">
@@ -34,12 +40,12 @@ const About = () => {
           <Grid item xs={12} md={4}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Avatar
-                src="https://scontent.fuio32-1.fna.fbcdn.net/v/t39.30808-6/395674789_3064542830344551_3933529025567890336_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHWmubFyphlvYSTUDRVa8bK_woNqGbZbgL_Cg2oZtluAmk5bKfifNJODLvVnGMLwRll9yjBXC2oFLOgLtivahVX&_nc_ohc=dtzgsuLSrfwQ7kNvgERUxTU&_nc_zt=23&_nc_ht=scontent.fuio32-1.fna&_nc_gid=WsOcfr4t-tzDXV3FsQ6Czg&oh=00_AYHpbA2C5piOFclC1H4exh5qHmOiW-GoKB1uEaJcc9nTdQ&oe=67E6913B"
+                src="https://drive.google.com/file/d/1TlhnaT1KAFvcBJI_jsfoiwPex35pe8VH/view?usp=sharing"
                 className="about-avatar"
                 sx={{ width: 176, height: 176 }}
               />
               <Typography variant="h6" className="about-typography">
-                Carlo
+                Carlos
               </Typography>
               <Typography
                 variant="body2"
@@ -53,8 +59,7 @@ const About = () => {
                 📧 carlos.guagrilla@hotmail.com
               </Typography>
               <Typography variant="body2" className="about-typography">
-                🔗
-                www.linkedin.com/in/carlos-javier-guagrilla-chicaiza-30500a1a4
+                🔗 www.linkedin.com/in/carlos-javier-guagrilla-chicaiza-30500a1a4
               </Typography>
             </Box>
           </Grid>
@@ -109,22 +114,26 @@ const About = () => {
               <Typography variant="h5">Experiencia Laboral 💼</Typography>
               <Typography variant="body1">
                 <List>
-                  <ListItem className="about-list-item">
-                    💼 Pasante de Desarrollo Web - Universidad de las Americas
-                  </ListItem>
-                </List>
-                <List>
-                  <ListItem className="about-list-item">
-                    💼 Pasante de IT - Tababela Cargo Center S.A.
-                  </ListItem>
-                </List>
-                <List>
-                  <ListItem className="about-list-item">
-                    💼 Pasante de Desarrollo Web - Pronavalle
-                  </ListItem>
+                  {experienceItems.map((item, index) => (
+                    <ListItem
+                      key={index}
+                      className="about-list-item"
+                      button
+                      onClick={() => handleItemClick(item)}
+                    >
+                      {item.title}
+                    </ListItem>
+                  ))}
                 </List>
               </Typography>
             </Paper>
+
+            {selectedItem && (
+              <Paper className="about-paper about-slide-down">
+                <Typography variant="h5">{selectedItem.title}</Typography>
+                <Typography variant="body1">{selectedItem.description}</Typography>
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>

@@ -1,36 +1,23 @@
 import React from 'react';
-import ActionAreaCard from '../components/Card'; // Importa el componente Card de Material-UI
-import '../styles/projectsStyle.css'; // Importa el archivo CSS
+import MediaCard from '../components/ProyectosComponents/cardComponent';
+import projectData from '../data/proyectos';
+import '../styles/projectsStyle.css';
 
 const Projects = () => {
   return (
     <section className="p-10">
       <h1 className="text-3xl font-bold">Mis Proyectos 🚀</h1>
       <div className="mt-10 card-container">
-        <ActionAreaCard
-          title="Proyecto 1"
-          description="Descripción del proyecto 1"
-        />
-        <ActionAreaCard
-          title="Proyecto 2"
-          description="Descripción del proyecto 2"
-        />
-        <ActionAreaCard
-          title="Proyecto 3"
-          description="Descripción del proyecto 3"
-        />
-        <ActionAreaCard
-          title="Proyecto 4"
-          description="Descripción del proyecto 4"
-        />
-        <ActionAreaCard
-          title="Proyecto 5"
-          description="Descripción del proyecto 5"
-        />
-        <ActionAreaCard
-          title="Proyecto 6"
-          description="Descripción del proyecto 6"
-        />
+        {Object.values(projectData).map((project, idx) => (
+          <MediaCard
+            key={idx}
+            image={project.image}
+            title={project.title}
+            heading={project.heading}
+            description={project.description}
+            descriptionLarga={project.descriptionLarga}
+          />
+        ))}
       </div>
     </section>
   );
