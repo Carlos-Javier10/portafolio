@@ -46,6 +46,7 @@ const Home = () => {
         <ActionAreaCard
           title="Proyecto 3"
           description="Descripción del proyecto 3"
+          image={vsgImage}
         />
       </div>
       <div className="mt-10">
