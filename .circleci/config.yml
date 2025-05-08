@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:20.8  # Imagen oficial de CircleCI para Node 20
+      - image: cimg/node:20.8
     steps:
       - checkout
       - run: npm install
@@ -15,7 +15,7 @@ jobs:
   test:
     docker:
       - image: cimg/node:20.8
-    parallelism: 4  # Corre el job en 4 contenedores paralelos
+    parallelism: 4
     steps:
       - checkout
       - run: npm install
@@ -29,3 +29,10 @@ workflows:
       - test:
           requires:
             - build
+
+notifications:
+  email:
+    recipients:
+      - carlos.guagrilla@hotmail.com  # Pon aquí tu correo
+    on_success: change    # Solo notifica si cambia el estado (de fallo a éxito o viceversa)
+    on_failure: always    # Notifica siempre que falle
