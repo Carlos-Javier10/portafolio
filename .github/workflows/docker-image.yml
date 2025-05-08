@@ -32,11 +32,13 @@ jobs:
     - name: Push the Docker Compose
       run: docker compose push
 
-    - name: Get the Docker Compose
-      run: docker compose pull
-
     - name: Stop the Docker Compose
       run: docker compose down
 
     - name: Start the Docker Compose
       run: docker compose up -d
+
+    - name: Run health check
+      run: |
+        sleep 10
+        curl -f http://localhost:5173 || exit 1
