@@ -6,17 +6,26 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:20.5 # Imagen oficial de CircleCI con Node.js 20
+      - image: circleci/node:20
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: npm install
-      - run:
-          name: Build Application
-          command: npm run build
+      - run: npm install
+      - run: npm run build
+
+  test:
+    docker:
+      - image: circleci/node:20
+    parallelism: 4  # Corre el job en 4 contenedores paralelos
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
 
 workflows:
+  version: 2
   build_and_test:
     jobs:
       - build
+      - test:
+          requires:
+            - build
