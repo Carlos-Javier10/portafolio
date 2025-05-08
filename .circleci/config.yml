@@ -3,14 +3,20 @@ version: 2.1
 orbs:
   node: circleci/node@5.2
 
+jobs:
+  build:
+    docker:
+      - image: circleci/node:20 # Usa la imagen de Node.js 20
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Build Application
+          command: npm run build
+
 workflows:
   build_and_test:
     jobs:
-      - node/install-packages:
-          version: '20' # Usa Node.js 20, como en tu configuración actual
-          pkg-manager: npm
-      - node/run:
-          name: Build Application
-          version: '20'
-          pkg-manager: npm
-          command: npm run build
+      - build
