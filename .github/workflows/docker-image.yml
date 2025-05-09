@@ -37,3 +37,9 @@ jobs:
 
     - name: Start the Docker Compose
       run: docker compose up -d
+
+    - name: Stop the Docker Compose
+      run: docker compose down
+
+    - name: Start the Docker Compose
+      run: docker compose up -d
