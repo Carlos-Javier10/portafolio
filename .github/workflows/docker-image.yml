@@ -35,11 +35,5 @@ jobs:
     - name: Stop the Docker Compose
       run: docker compose down
 
-    - name: Start the Docker Compose
-      run: docker compose up -d
-
-    - name: Stop the Docker Compose
-      run: docker compose down
-
-    - name: Start the Docker Compose
-      run: docker compose up -d
+    - name: Start the Docker Compose with force recreate
+      run: docker compose up -d --force-recreate
