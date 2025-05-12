@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: main
 
     steps:
     - name: Check out the repository
@@ -16,9 +16,6 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-
-    - name: Create external network
-      run: docker network create portafolio-network || true
 
     - name: Build the Docker Compose
       run: docker compose build
@@ -32,8 +29,11 @@ jobs:
     - name: Push the Docker Compose
       run: docker compose push
 
+    - name: Get the Docker Compose
+      run: docker compose pull
+
     - name: Stop the Docker Compose
       run: docker compose down
 
-    - name: Start the Docker Compose with force recreate
-      run: docker compose up -d --force-recreate
+    - name: Start the Docker Compose 
+      run: docker compose up -d 
