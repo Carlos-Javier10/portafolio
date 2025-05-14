@@ -34,7 +34,7 @@ jobs:
       run: docker compose pull
 
     - name: Stop the Docker Compose
-      run: docker compose down
+      run: docker-compose down --volumes --remove-orphans
 
     - name: Create external network if not exists
       run: docker network create portafolio-network || true
@@ -42,4 +42,3 @@ jobs:
     - name: Start the Docker Compose with force recreate
       run: docker compose up -d 
 
-      
