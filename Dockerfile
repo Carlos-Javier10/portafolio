@@ -1,23 +1,23 @@
-# Usar una imagen base de Node.js
-FROM node:20
+# Etapa de construcción
+FROM node:22 as build
 
-# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar los archivos necesarios
 COPY package*.json ./
+RUN npm install
 
-# Eliminar node_modules y package-lock.json si existen
-RUN rm -rf node_modules package-lock.json
-
-# Instalar las dependencias
-RUN npm install --legacy-peer-deps
-
-# Copiar el resto del código de la aplicación
 COPY . .
+RUN npm run build
 
-# Exponer el puerto en el que la aplicación se ejecutará
+# Etapa de producción
+FROM node:20-alpine
+
+WORKDIR /app
+
+RUN npm install -g serve
+
+COPY --from=build /app/dist ./dist
+
 EXPOSE 3000
 
-# Comando para ejecutar la aplicación en modo de desarrollo
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["serve", "-s", "dist", "-l", "3000"]

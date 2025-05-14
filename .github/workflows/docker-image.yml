@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: main
 
     steps:
     - name: Check out the repository
@@ -33,10 +33,10 @@ jobs:
       run: docker compose pull
 
     - name: Stop the Docker Compose
-      run: docker compose -p portafolio down
+      run: docker compose -p down
 
     - name: Create external network if not exists
       run: docker network create portafolio-network || true
 
     - name: Start the Docker Compose with force recreate
-      run: docker compose -p portafolio up -d --force-recreate 
+      run: docker compose up -d 

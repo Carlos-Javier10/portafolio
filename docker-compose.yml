@@ -1,5 +1,5 @@
 services:
-  app:
+  portafolio:
     container_name: portafolio
     build:
       context: .
