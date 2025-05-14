@@ -27,20 +27,11 @@ jobs:
     - name: Build the Docker Compose
       run: docker compose build
 
-    - name: Push Docker image
+    - name: Push the Docker Compose
       run: docker compose push
-
     - name: Get the Docker Compose
       run: docker compose pull
-
-    - name: Check active containers
-      run: docker ps -a
-
     - name: Stop the Docker Compose
-      run: docker compose down --volumes --remove-orphans || echo "No resources found to remove."
-
-    - name: Create external network if not exists
-      run: docker network create portafolio-network || true
-
-    - name: Start the Docker Compose with force recreate
+      run: docker compose down
+    - name: Start the Docker Compose
       run: docker compose up -d
