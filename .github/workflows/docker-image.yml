@@ -22,7 +22,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.CI }}
+        password: ${{ secrets.GHCR }}
 
     - name: Build the Docker Compose
       run: docker compose build
@@ -41,4 +41,3 @@ jobs:
 
     - name: Start the Docker Compose with force recreate
       run: docker compose up -d 
-      
