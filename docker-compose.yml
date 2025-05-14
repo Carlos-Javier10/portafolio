@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: portafolio-app
+    container_name: portafolio
     build:
       context: .
       dockerfile: Dockerfile
