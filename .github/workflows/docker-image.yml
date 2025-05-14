@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "Dev" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "Dev" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -16,9 +16,6 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-
-    - name: Create external network
-      run: docker network create portafolio-network || true
 
     - name: Build the Docker Compose
       run: docker compose build
