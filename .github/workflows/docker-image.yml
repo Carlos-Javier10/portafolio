@@ -39,4 +39,5 @@ jobs:
       run: docker network create portafolio-network || true
 
     - name: Start the Docker Compose with force recreate
-      run: docker compose -p portafolio-app up -d --force-recreate
+      run: docker compose -p portafolio-app up -d --force-recreate 
+      
