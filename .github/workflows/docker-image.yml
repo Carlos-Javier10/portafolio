@@ -33,12 +33,14 @@ jobs:
     - name: Get the Docker Compose
       run: docker compose pull
 
+    - name: Check active containers
+      run: docker ps -a
+
     - name: Stop the Docker Compose
-      run: docker compose down --volumes --remove-orphans
+      run: docker compose down --volumes --remove-orphans || echo "No resources found to remove."
 
     - name: Create external network if not exists
       run: docker network create portafolio-network || true
 
     - name: Start the Docker Compose with force recreate
-      run: docker compose up -d 
-
+      run: docker compose up -d
