@@ -33,10 +33,10 @@ jobs:
       run: docker compose pull
 
     - name: Stop the Docker Compose
-      run: docker compose down
+      run: docker compose -p portafolio-app down
 
     - name: Create external network if not exists
       run: docker network create portafolio-network || true
 
     - name: Start the Docker Compose with force recreate
-      run: docker compose up -d --force-recreate
+      run: docker compose -p portafolio-app up -d --force-recreate
