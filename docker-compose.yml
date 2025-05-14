@@ -1,6 +1,8 @@
 services:
   portafolio:
     container_name: portafolio
+    image: ghcr.io/Carlos-Javier10/portafolio:latest
+
     build:
       context: .
       dockerfile: Dockerfile
