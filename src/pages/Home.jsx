@@ -46,7 +46,6 @@ const Home = () => {
         <ActionAreaCard
           title="Proyecto 3"
           description="Descripción del proyecto 3"
-          image={vsgImage} // Usa la imagen importada
         />
       </div>
       <div className="mt-10">
