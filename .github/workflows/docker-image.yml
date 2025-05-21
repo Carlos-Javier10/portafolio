@@ -33,5 +33,7 @@ jobs:
       run: docker compose pull
     - name: Stop the Docker Compose
       run: docker compose down
+    - name: Create Docker network if not exists
+      run: docker network create portafolio-network || true
     - name: Start the Docker Compose
       run: docker compose up -d
