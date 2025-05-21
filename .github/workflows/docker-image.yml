@@ -33,11 +33,5 @@ jobs:
       run: docker compose pull
     - name: Stop the Docker Compose
       run: docker compose down
-    - name: Create Docker network if not exists
-      run: |
-        if (-not (docker network ls --format '{{.Name}}' | Select-String -Pattern '^portafolio-network$')) {
-          docker network create portafolio-network
-        }
-      shell: pwsh
     - name: Start the Docker Compose
       run: docker compose up -d
