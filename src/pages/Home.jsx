@@ -48,11 +48,6 @@ const Home = () => {
           description="Descripción del proyecto 3"
         />
       </div>
-      <div className="mt-10">
-        <h2 className="text-3xl font-bold"></h2>
-        <p className="text-gray-600 mt-4">
-        Estos tres proyectos representan mi evolución y pasión por el desarrollo de software, donde he aplicado y dominado diversas tecnologías de vanguardia. Desde la creación de interfaces dinámicas y eficientes con React y Vite, hasta la construcción de aplicaciones robustas y escalables con Next.js y Express, he logrado integrar soluciones completas tanto en el frontend como en el backend. Además, he explorado el poder de Python para desarrollar funcionalidades avanzadas y automatizar procesos, consolidando un stack tecnológico versátil y orientado a resultados. Cada proyecto no solo refleja mi capacidad técnica, sino también mi compromiso por innovar y entregar soluciones de alto impacto.        </p>
-      </div>
     </section>
   );
 };
