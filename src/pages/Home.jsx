@@ -48,6 +48,7 @@ const Home = () => {
           description="Descripción del proyecto 3"
         />
       </div>
+      
     </section>
   );
 };
