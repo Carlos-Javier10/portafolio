@@ -9,13 +9,11 @@ import Projects from './pages/Projects.jsx';
 const App = () => {
   return (
     <LoadingProvider>
-      <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow p-4">
           <AppRoutes /> {/* Aquí están todas las rutas */}
         </main>
         <Footer />
-      </div>
     </LoadingProvider>
   );
 };

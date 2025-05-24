@@ -1,56 +1,219 @@
-// Home.js
-import React, { useContext, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { LoadingContext } from '../context/LoadingContext'; // Importa el contexto
-import ActionAreaCard from '../components/Card'; // Importa el componente Card de Material-UI
-import '../styles/homeStyle.css'; // Importa el archivo CSS
-import vsgImage from '../assets/images/vsg.png'; // Importa la imagen
-import '../styles/cardStyle.css'; // Importa el archivo CSS
+import React, { useContext, useEffect } from "react";
+import { LoadingContext } from "../context/LoadingContext";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import Divider from "@mui/material/Divider";
+import CaruselComponent from "./../components/ProyectosComponents/caruselComponent";
 
 const Home = () => {
-  // Accedemos al contexto de carga
   const { isLoaded, setIsLoaded } = useContext(LoadingContext);
 
-  // Usamos useEffect para marcar como cargado cuando el componente se monte
   useEffect(() => {
     setIsLoaded(true);
   }, [setIsLoaded]);
 
-  // Si aún no está cargado, mostramos un mensaje de carga
   if (!isLoaded) {
-    return <div>Cargando...</div>;
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        minHeight="60vh"
+      >
+        <CircularProgress color="primary" />
+        <Typography variant="body1" mt={2}>
+          Cargando...
+        </Typography>
+      </Box>
+    );
   }
 
-  // Si ya está cargado, mostramos el contenido de la página
   return (
-    <section className="text-center p-10">
-      <h1 className="text-4xl font-bold mt-10">¡Bienvenido a mi Portafolio! 🎨</h1>
-      <p className="text-gray-600 mt-4">Explora mis proyectos, conoce más sobre mí y contáctame.</p>
-      <div className="mt-6">
-        <Link to="/projects" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-          Ver Proyectos
-        </Link>
-      </div>
-      <div className="mt-10 card-container">
-        {/* Aquí se usa el nuevo componente de Material-UI */}
-        <ActionAreaCard
-          title="Proyecto 1"
-          description="Descripción del proyecto 1"
-          image={vsgImage} // Usa la imagen importada
-        />
-        <ActionAreaCard
-          title="Proyecto 2"
-          description="Descripción del proyecto 2"
-          image={vsgImage} // Usa la imagen importada
-        />
-        <ActionAreaCard
-          title="Proyecto 3"
-          description="Descripción del proyecto 3"
-          image={vsgImage} // Usa la imagen importada
-        />
-      </div>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        py: { xs: 4, md: 10 },
+        px: { xs: 1, sm: 2, md: 4 },
+      }}
+    >
+      <Box
+        maxWidth={2000}
+        mx="auto"
+        width="100%"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Typography
+          variant="h2"
+          fontWeight="bold"
+          mt={{ xs: 4, md: 10 }}
+          gutterBottom
+          color="#1e88e5"
+          textAlign="center"
+          fontSize={{ xs: "2.2rem", sm: "3rem", md: "4rem" }}
+        >
+          Software Developer
+        </Typography>
+        <Typography
+          variant="h2"
+          fontWeight="semibold"
+          mt={2}
+          textAlign="center"
+          fontSize={{ xs: "1.8rem", sm: "2.5rem", md: "3rem" }}
+        >
+          Carlos Guagrilla
+        </Typography>
 
-    </section>
+        <Box
+          display="flex"
+          flexDirection={{ xs: "column", sm: "row" }}
+          justifyContent="center"
+          alignItems="center"
+          gap={{ xs: 2, sm: 4 }}
+          mt={7}
+          width="100%"
+        >
+          <a
+            href="https://www.linkedin.com/in/carlos-javier-guagrilla-chicaiza-30500a1a4/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <LinkedInIcon
+              sx={{
+                fontSize: 40,
+                color: "#0A66C2",
+                p: 0.5,
+              }}
+            />
+          </a>
+          <a
+            href="https://github.com/Carlos-Javier10"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <GitHubIcon
+              sx={{
+                fontSize: 40,
+                color: "#e0e0e0",
+                p: 0.5,
+              }}
+            />
+          </a>
+        </Box>
+        <Divider
+          sx={{
+            bgcolor: "#ffffff",
+            height: { xs: 2, md: 3 },
+            borderRadius: 2,
+            my: 6,
+          }}
+        />
+        <CaruselComponent />
+        <Divider
+          sx={{
+            backgroundColor: "red",
+            height: { xs: 2, md: 3 },
+            borderRadius: 2,
+            my: 6,
+          }}
+        />
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          color="#1e88e5"
+          mb={2}
+          textAlign="center"
+        >
+          Sobre mí
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#fff",
+            mb: 2,
+            textAlign: "center",
+            maxWidth: 900,
+            mx: "auto",
+            fontSize: { xs: "1rem", sm: "1.1rem", md: "1.15rem" },
+            lineHeight: 1.7,
+          }}
+        >
+          Me apasiona la tecnología y todo lo relacionado con crear experiencias
+          digitales. Trabajo tanto en el frontend como en el backend, siempre
+          buscando nuevos retos que me ayuden a mejorar. Me gusta aprender
+          tecnologías nuevas para integrarlas en mis proyectos y hacerlos más
+          completos. Investigo constantemente y aplico lo que aprendo, porque
+          creo que la práctica es clave para crecer como desarrollador.
+        </Typography>
+        <Divider
+          sx={{
+            bgcolor: "#1e88e5",
+            height: { xs: 2, md: 3 },
+            borderRadius: 2,
+            my: 6,
+          }}
+        />
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          color="#1e88e5"
+          mb={2}
+          textAlign="center"
+        >
+          Experiencia Laboral 💼
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#fff",
+            mb: 2,
+            textAlign: "center",
+            maxWidth: 900,
+            mx: "auto",
+            fontSize: { xs: "1rem", sm: "1.1rem", md: "1.15rem" },
+            lineHeight: 1.7,
+          }}
+        >
+          Pasante de Desarrollo Web - Universidad de las Americas
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#fff",
+            mb: 2,
+            textAlign: "center",
+            maxWidth: 900,
+            mx: "auto",
+            fontSize: { xs: "1rem", sm: "1.1rem", md: "1.15rem" },
+            lineHeight: 1.7,
+          }}
+        >
+          Pasante de IT - Tababela Cargo Center S.A.
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#fff",
+            mb: 2,
+            textAlign: "center",
+            maxWidth: 900,
+            mx: "auto",
+            fontSize: { xs: "1rem", sm: "1.1rem", md: "1.15rem" },
+            lineHeight: 1.7,
+          }}
+        >
+          Pasante de Desarrollo Web - Pronavalle
+        </Typography>
+      </Box>
+    </Box>
   );
 };
+
 export default Home;
