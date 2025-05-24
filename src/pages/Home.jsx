@@ -150,7 +150,7 @@ const Home = () => {
           buscando nuevos retos que me ayuden a mejorar. Me gusta aprender
           tecnologías nuevas para integrarlas en mis proyectos y hacerlos más
           completos. Investigo constantemente y aplico lo que aprendo, porque
-          creo que la práctica es clave para crecer como desarrollador. 
+          creo que la práctica es clave para crecer como desarrollador.
         </Typography>
         <Divider
           sx={{
