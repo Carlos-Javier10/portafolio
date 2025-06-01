@@ -24,10 +24,16 @@ export default function MediaCard({
       <Card
         sx={{
           maxWidth: 345,
-          transition: "transform 0.3s cubic-bezier(.25,.8,.25,1)",
+          margin: "1rem",
+          background: "linear-gradient(135deg, #232526 0%, #1e88e5 100%)",
+          color: "#fff",
+          borderRadius: 3,
+          boxShadow: 3,
+          transition:
+            "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s",
           "&:hover": {
             transform: "scale(1.05)",
-            boxShadow: 6,
+            boxShadow: 10,
           },
         }}
       >

@@ -14,7 +14,15 @@ const About = () => {
     { title: "Pasante de Desarrollo Web - Pronavalle", description: "Descripción de la experiencia en Pronavalle." },
   ];
   return (
-    <Box sx={{ bgcolor: '#080808', minHeight: '100vh', py: { xs: 4, md: 10 } }}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        py: { xs: 4, md: 10 },
+        px: { xs: 1, sm: 2, md: 4 },
+        background: 'linear-gradient(135deg, #232526 0%,rgb(0, 0, 0) 100%)',
+        color: '#fff',
+      }}
+    >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Izquierda */}

@@ -17,6 +17,7 @@ import {
   SiFastapi,
   SiExpress,
   SiNextdotjs,
+  SiCloudflare,
 } from "react-icons/si";
 
 const techIcons = [
@@ -25,6 +26,7 @@ const techIcons = [
   { icon: <SiNodedotjs color="#339933" />, name: "Node.js" },
   { icon: <SiReact color="#61dafb" />, name: "React" },
   { icon: <SiNextdotjs color="#fff" />, name: "Next.js" },
+  { icon: <SiCloudflare color="#f38020" />, name: "Cloudflare" },
   { icon: <SiDocker color="#2496ed" />, name: "Docker" },
   { icon: <SiMui color="#007fff" />, name: "Material UI" },
   { icon: <SiMysql color="#00758f" />, name: "MySQL" },
@@ -39,9 +41,7 @@ const CaruselComponent = () => {
   const theme = useTheme();
   // Responsive: menos íconos en pantallas pequeñas
   const getVisibleCount = () => {
-    if (window.innerWidth < 600) return 3;
-    if (window.innerWidth < 900) return 5;
-    return 9;
+    return 6; // Siempre mostrar solo 4 iconos
   };
   const [visible, setVisible] = useState(getVisibleCount());
   const total = techIcons.length;
@@ -83,7 +83,7 @@ const CaruselComponent = () => {
         setIndex((prev) => (prev + 1) % total);
         setIsTransitioning(false);
       }, 500);
-    }, 3500);
+    }, 8500); // Cambiado a 8.5 segundos (3.5 + 5)
     return () => clearInterval(interval);
   }, [total]);
 
@@ -113,8 +113,8 @@ const CaruselComponent = () => {
           width="100%"
           justifyContent="center"
           sx={{
-            transition: 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-            opacity: isTransitioning ? 0.3 : 1,
+            transition: 'opacity 0.6s cubic-bezier(.4,2,.6,1)',
+            opacity: isTransitioning ? 0.2 : 1,
             flexWrap: 'nowrap',
             overflowX: { xs: 'auto', md: 'visible' },
             scrollbarWidth: 'none',
@@ -128,21 +128,31 @@ const CaruselComponent = () => {
               flexDirection="column"
               alignItems="center"
               sx={{
-                transition: 'transform 0.8s, opacity 0.8s',
-                transform: 'scale(1)',
-                opacity: 1,
-                minWidth: 64,
+                transition: 'transform 0.6s cubic-bezier(.4,2,.6,1), box-shadow 0.6s cubic-bezier(.4,2,.6,1), opacity 0.6s cubic-bezier(.4,2,.6,1)',
+                transform: isTransitioning ? 'scale(0.85) rotate(-8deg)' : 'scale(1)',
+                opacity: isTransitioning ? 0.5 : 1,
+                minWidth: 96, // aumentado
+                minHeight: 110, // nuevo: más alto
+                boxShadow: isTransitioning ? 6 : 3,
                 '&:hover': {
-                  transform: 'scale(1.15)',
-                  opacity: 0.9,
+                  transform: 'scale(1.18) rotate(6deg)',
+                  opacity: 0.95,
+                  boxShadow: 12,
+                  background: 'rgba(30,136,229,0.08)',
+                  borderRadius: 2,
                 },
-                maxWidth: { xs: 80, sm: 100, md: 120 },
+                maxWidth: { xs: 120, sm: 140, md: 160 }, // aumentado
+                maxHeight: { xs: 120, sm: 140, md: 160 }, // nuevo
+                cursor: 'pointer',
+                p: { xs: 1.5, sm: 2 }, // padding extra
+                background: 'rgba(30,30,30,0.7)', // leve fondo para resaltar
+                borderRadius: 3,
               }}
             >
-              <Box fontSize={{ xs: 40, sm: 56, md: 64 }}>
+              <Box fontSize={{ xs: 48, sm: 64, md: 80 }}>
                 {tech.icon}
               </Box>
-              <Typography variant="caption" color="#fff" fontSize={{ xs: 11, sm: 13, md: 14 }} textAlign="center">
+              <Typography variant="caption" color="#fff" fontSize={{ xs: 13, sm: 15, md: 16 }} textAlign="center">
                 {tech.name}
               </Typography>
             </Box>

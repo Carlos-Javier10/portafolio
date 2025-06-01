@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import { Button } from '@mui/base/Button';
 import { sendEmail } from '../services/emailService';
-import '../styles/contactStyle.css'; // Importa el archivo CSS
+import { Box, TextField, CircularProgress, Typography } from '@mui/material';
+import { LoadingContext } from "../context/LoadingContext";
 
 const Contact = () => {
+  const { isLoaded, setIsLoaded } = React.useContext(LoadingContext);
+  React.useEffect(() => { setIsLoaded(true); }, [setIsLoaded]);
+  
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+  if (!isLoaded) return (
+    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="60vh">
+      <CircularProgress color="primary" />
+      <Typography variant="body1" mt={2}>Cargando...</Typography>
+    </Box>
+  );
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,36 +36,108 @@ const Contact = () => {
   };
 
   return (
-    <section className="p-10 text-center">
-      <h1 className="text-3xl font-bold">Contáctame 📩</h1>
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4 contact-form">
-        <input
-          type="text"
+    <Box
+      sx={{
+        minHeight: "100vh",
+        py: { xs: 4, md: 10 },
+        px: { xs: 1, sm: 2, md: 4 },
+        background: 'linear-gradient(135deg, #232526 0%,rgb(0, 0, 0) 100%)',
+        color: '#fff',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+        <h1 className="text-3xl font-bold" style={{ textAlign: 'center' }}>Contáctame 📩</h1>
+      </Box>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          mt: 6,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          maxWidth: 500,
+          mx: 'auto',
+          background: 'rgba(30,30,30,0.8)',
+          p: 4,
+          borderRadius: 2,
+          boxShadow: 3,
+        }}
+      >
+        <TextField
+          label="Nombre"
+          variant="filled"
           name="name"
-          placeholder="Nombre"
-          className="w-full p-2 border rounded"
+          value={formData.name}
           onChange={handleChange}
           required
+          sx={{
+            width: '100%',
+            '& .MuiFilledInput-root': {
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: 1,
+              border: '1px solid #444',
+            },
+            '& .MuiInputLabel-root': {
+              color: '#bbb',
+            },
+            '& .MuiFilledInput-input': {
+              color: '#fff',
+            },
+          }}
         />
-        <input
+        <TextField
+          label="Correo Electrónico"
+          variant="filled"
           type="email"
           name="email"
-          placeholder="Correo Electrónico"
-          className="w-full p-2 border rounded"
+          value={formData.email}
           onChange={handleChange}
           required
+          sx={{
+            width: '100%',
+            '& .MuiFilledInput-root': {
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: 1,
+              border: '1px solid #444',
+            },
+            '& .MuiInputLabel-root': {
+              color: '#bbb',
+            },
+            '& .MuiFilledInput-input': {
+              color: '#fff',
+            },
+          }}
         />
-        <textarea
+        <TextField
+          label="Mensaje"
+          variant="filled"
           name="message"
-          placeholder="Mensaje"
-          rows="4"
-          className="w-full p-2 border rounded"
+          value={formData.message}
           onChange={handleChange}
           required
-        ></textarea>
-        <Button type="submit">Enviar</Button>
-      </form>
-    </section>
+          multiline
+          minRows={4}
+          sx={{
+            width: '100%',
+            '& .MuiFilledInput-root': {
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: 1,
+              border: '1px solid #444',
+            },
+            '& .MuiInputLabel-root': {
+              color: '#bbb',
+            },
+            '& .MuiFilledInput-input': {
+              color: '#fff',
+            },
+          }}
+        />
+        <Button type="submit" style={{ background: '#1976d2', color: '#fff', padding: '0.75rem', borderRadius: 6, fontWeight: 600, fontSize: '1rem' }}>
+          Enviar
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
