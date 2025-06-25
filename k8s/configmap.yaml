@@ -4,10 +4,8 @@ metadata:
   name: portafolio-config
   labels:
     app: portafolio
-    version: v1.0.0
 data:
   # Configuraciones de la aplicación
-  API_URL: "https://cjdevlabs.com"
+  API_URL: "https://portafolio.cjdevlabs.com"
   APP_NAME: "Portafolio"
   APP_VERSION: "1.0.0"
-  NODE_ENV: "production"

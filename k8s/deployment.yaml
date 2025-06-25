@@ -4,14 +4,8 @@ metadata:
   name: portafolio-app
   labels:
     app: portafolio
-    version: v1.0.0
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
   selector:
     matchLabels:
       app: portafolio
@@ -19,19 +13,12 @@ spec:
     metadata:
       labels:
         app: portafolio
-        version: v1.0.0
     spec:
-      imagePullSecrets:
-      - name: ghcr-secret
       containers:
       - name: portafolio
         image: ghcr.io/carlos-javier10/portafolio:latest
-        imagePullPolicy: Always
         ports:
         - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: portafolio-config
         env:
         - name: NODE_ENV
           value: "production"
@@ -48,13 +35,9 @@ spec:
             port: 80
           initialDelaySeconds: 30
           periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
-          timeoutSeconds: 3
-          failureThreshold: 3

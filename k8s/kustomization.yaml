@@ -10,10 +10,9 @@ resources:
   - configmap.yaml
   - hpa.yaml
 
-labels:
-  - pairs:
-      app: portafolio
-      version: v1.0.0
+commonLabels:
+  app: portafolio
+  version: v1.0.0
 
 images:
   - name: ghcr.io/carlos-javier10/portafolio
