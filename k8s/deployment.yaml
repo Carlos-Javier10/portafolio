@@ -4,8 +4,14 @@ metadata:
   name: portafolio-app
   labels:
     app: portafolio
+    version: v1.0.0
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
       app: portafolio
@@ -13,38 +19,39 @@ spec:
     metadata:
       labels:
         app: portafolio
+        version: v1.0.0
     spec:
       containers:
       - name: portafolio
         image: ghcr.io/carlos-javier10/portafolio:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 80
         envFrom:
         - configMapRef:
             name: portafolio-config
         env:
-        - name: VITE_EMAIL_SERVICE_ID
-          value: "service_lg78m6k"
-        - name: VITE_EMAIL_TEMPLATE_ID
-          value: "template_8oqp7ct"
-        - name: VITE_EMAIL_USER_ID
-          value: "z1ugu6RR4gavhTSin"
+        - name: NODE_ENV
+          value: "production"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "64Mi"
+            cpu: "250m"
           limits:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "500m"
         livenessProbe:
           httpGet:
             path: /
-            port: 3000
+            port: 80
           initialDelaySeconds: 30
           periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /
-            port: 3000
+            port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3

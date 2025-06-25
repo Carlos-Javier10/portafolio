@@ -4,13 +4,14 @@ metadata:
   name: portafolio-hpa
   labels:
     app: portafolio
+    version: v1.0.0
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: portafolio-app
   minReplicas: 2
-  maxReplicas: 6
+  maxReplicas: 10
   metrics:
   - type: Resource
     resource:
@@ -24,3 +25,20 @@ spec:
       target:
         type: Utilization
         averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 4
+        periodSeconds: 15
+      selectPolicy: Max
