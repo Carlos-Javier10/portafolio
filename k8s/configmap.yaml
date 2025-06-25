@@ -6,7 +6,7 @@ metadata:
     app: portafolio
 data:
   # Configuraciones de la aplicación
-  API_URL: "https://api.tu-dominio.com"
+  API_URL: "https://portafolio.cjdevlabs.com"
   APP_NAME: "Portafolio"
   APP_VERSION: "1.0.0"
 ---
