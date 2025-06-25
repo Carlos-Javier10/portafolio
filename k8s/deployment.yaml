@@ -21,9 +21,12 @@ spec:
         app: portafolio
         version: v1.0.0
     spec:
+      imagePullSecrets:
+      - name: ghcr-secret
       containers:
       - name: portafolio
         image: ghcr.io/carlos-javier10/portafolio:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         envFrom:
