@@ -24,10 +24,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - cjdevlabs.com
+    - portafolio.cjdevlabs.com
     secretName: portafolio-tls
   rules:
-  - host: cjdevlabs.com
+  - host: portafolio.cjdevlabs.com
     http:
       paths:
       - path: /
