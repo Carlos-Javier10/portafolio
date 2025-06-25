@@ -2,10 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portafolio-app
+  namespace: portafolio
   labels:
     app: portafolio
+    version: v1.0.0
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
       app: portafolio
@@ -13,31 +20,50 @@ spec:
     metadata:
       labels:
         app: portafolio
+        version: v1.0.0
     spec:
       containers:
       - name: portafolio
         image: ghcr.io/carlos-javier10/portafolio:latest
         ports:
-        - containerPort: 80
-        env:
-        - name: NODE_ENV
-          value: "production"
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: portafolio-config
+        - secretRef:
+            name: portafolio-secrets
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
             memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
             cpu: "500m"
         livenessProbe:
           httpGet:
             path: /
-            port: 80
+            port: 3000
           initialDelaySeconds: 30
           periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /
-            port: 80
+            port: 3000
           initialDelaySeconds: 5
           periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

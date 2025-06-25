@@ -2,13 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: portafolio-service
+  namespace: portafolio
   labels:
     app: portafolio
 spec:
   type: ClusterIP
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 3000
     protocol: TCP
     name: http
   selector:
@@ -18,9 +19,16 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: portafolio-ingress
+  namespace: portafolio
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: "1m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
 spec:
   tls:
   - hosts:

@@ -4,15 +4,22 @@ kind: Kustomization
 metadata:
   name: portafolio-kustomization
 
+namespace: portafolio
+
 resources:
+  - namespace.yaml
   - deployment.yaml
   - service.yaml
   - configmap.yaml
   - hpa.yaml
+  - resource-quota.yaml
+  - network-policy.yaml
+  - pdb.yaml
 
 commonLabels:
   app: portafolio
   version: v1.0.0
+  component: frontend
 
 images:
   - name: ghcr.io/carlos-javier10/portafolio
