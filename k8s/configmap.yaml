@@ -2,27 +2,12 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: portafolio-config
-  namespace: portafolio
   labels:
     app: portafolio
 data:
-  # Configuraciones de la aplicación
+  # Configuraciones de la aplicación desde .env
   NODE_ENV: "production"
   VITE_TITLE: "Portafolio"
   VITE_ANALYZER_BATCH_SIZE: "100"
   SKIP_PREFLIGHT_CHECK: "true"
   BROWSER: "none"
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: portafolio-secrets
-  namespace: portafolio
-  labels:
-    app: portafolio
-type: Opaque
-data:
-  # EmailJS credentials (base64 encoded)
-  VITE_EMAIL_SERVICE_ID: c2VydmljZV9sZzc4bTZr  # service_lg78m6k
-  VITE_EMAIL_TEMPLATE_ID: dGVtcGxhdGVfOG9xcDdjdA==  # template_8oqp7ct
-  VITE_EMAIL_USER_ID: ejF1Z3U2UlI0Z2F2aFRTaW4=  # z1ugu6RR4gavhTSin
